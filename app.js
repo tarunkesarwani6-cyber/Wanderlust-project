@@ -90,7 +90,7 @@ app.listen(8080, (res, req) => {
   console.log("connected to 8080");
 });
 
-const MONGOURL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGOURL = process.env.ATLASDB_URL;
 
 main()
   .then(() => {
