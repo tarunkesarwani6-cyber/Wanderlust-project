@@ -1,0 +1,51 @@
+<% layout("layouts/boilerplate") %>
+
+    <h1 class="mb-4">
+        My Wishlist ❤️
+    </h1>
+
+    <div class="row">
+
+        <% wishlist.forEach(listing=>{ %>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                
+
+                    <div class="listing-card">
+
+                        <img src="<%= listing.image.url %>" class="listing-img" />
+
+                        <div class="listing-info">
+
+                            <h5>
+                                <%= listing.title %>
+                            </h5>
+
+                            <p>
+                                ₹ <%= listing.price %> / night
+                            </p>
+
+                            <form action="/listings/<%= listing._id %>/wishlist" method="POST">
+
+                                <button class="remove-wishlist-btn">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                    Remove
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                
+
+            </div>
+
+            <% }) %>
+
+    </div>

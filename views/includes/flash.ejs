@@ -1,0 +1,67 @@
+<% if(success && success.length > 0){ %>
+
+<script>
+
+Toastify({
+
+   text: "<%= success[0] %>",
+
+   duration: 3000,
+
+   gravity: "top",
+
+   position: "right",
+
+   close: true,
+
+   stopOnFocus: true,
+
+   style: {
+
+      background:"#ff385c",
+
+      borderRadius:"12px",
+
+      padding:"1rem 1.4rem",
+
+   }
+
+}).showToast();
+
+</script>
+
+<% } %>
+
+<% if(error && error.length > 0){ %>
+
+<script>
+
+Toastify({
+
+   text: "<%= error[0] %>",
+
+   duration: 3000,
+
+   gravity: "top",
+
+   position: "right",
+
+   close: true,
+
+   stopOnFocus: true,
+
+   style: {
+
+      background:"#222",
+
+      borderRadius:"12px",
+
+      padding:"1rem 1.4rem",
+
+   }
+
+}).showToast();
+
+</script>
+
+<% } %>

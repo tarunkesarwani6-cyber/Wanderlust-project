@@ -1,0 +1,94 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="profile-container">
+
+   <div class="profile-card">
+
+      <div class="profile-top">
+
+         <div class="profile-avatar">
+
+            <i class="fa-solid fa-user"></i>
+
+         </div>
+
+         <div>
+
+            <h2>
+               <%= currUser.username %>
+            </h2>
+
+            <p>
+               <%= currUser.email %>
+            </p>
+
+         </div>
+
+      </div>
+
+      <hr>
+
+      <div class="profile-info">
+
+         <div class="profile-box">
+
+            <h5>
+               Wishlist
+            </h5>
+
+            <p>
+               View saved listings
+            </p>
+
+            <a
+            href="/listings/wishlist"
+            class="profile-btn"
+            >
+               Open Wishlist
+            </a>
+
+         </div>
+
+         <div class="profile-box">
+
+            <h5>
+               All Listings
+            </h5>
+
+            <p>
+               Manage your listings
+            </p>
+
+            <a
+            href="/listings"
+            class="profile-btn"
+            >
+               View Listings
+            </a>
+
+         </div>
+
+         <div class="profile-box">
+
+            <h5>
+               Security
+            </h5>
+
+            <p>
+               Reset your password
+            </p>
+
+            <a
+            href="/forgot-password"
+            class="profile-btn"
+            >
+               Reset Password
+            </a>
+
+         </div>
+
+      </div>
+
+   </div>
+
+</div>

@@ -1,0 +1,297 @@
+<% selectedCategory = typeof selectedCategory !== 'undefined' ? selectedCategory : "" %>
+<nav class="navbar navbar-expand-md bg-white sticky-top border-bottom">
+  <div class="container-fluid px-5">
+
+
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold fs-3 text-danger" href="/">
+      <i class="fa-brands fa-airbnb me-2"></i>Wanderlust
+    </a>
+
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <!-- Center Links -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <div class="navbar-nav gap-4 align-items-center">
+        <a class="nav-link d-flex flex-column align-items-center <%= typeof currentPage !== 'undefined' && currentPage === 'home' ? 'active-nav' : '' %>" href="/">  <i class="fa-solid fa-house fs-5"></i>
+          <span class="small">Homes</span>
+        </a>
+
+        <a class="nav-link d-flex flex-column align-items-center <%= typeof currentPage !== 'undefined' && currentPage === 'listings' ? 'active-nav' : '' %>" href="/listings">  <div class="position-relative">
+            <i class="fa-solid fa-address-book"></i>
+            <span class="badge rounded-pill bg-danger new-badge">NEW</span>
+          </div>
+          <span class="small">ALL LISTINGS</span>
+        </a>
+
+        <a class="nav-link d-flex flex-column align-items-center <%= typeof currentPage !== 'undefined' && currentPage === 'new' ? 'active-nav' : '' %>" href="/listings/new">  <div class="position-relative">
+            <i class="fa-solid fa-bell-concierge fs-5"></i>
+            <!-- <span class="badge rounded-pill bg-danger new-badge">NEW</span> -->
+          </div>
+          <span class="small">ADD NEW LISTING</span>
+        </a>
+ 
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="d-flex align-items-center gap-3">
+
+  <% if(!currUser){ %>
+
+    <a
+      href="/signup"
+      class="text-dark text-decoration-none fw-semibold"
+    >
+      Sign Up
+    </a>
+
+    <a
+      href="/login"
+      class="text-dark text-decoration-none fw-semibold"
+    >
+      Login
+    </a>
+
+  <% } else { %>
+
+    <span class="fw-bold text-dark">
+
+      Welcome,
+      <%= currUser.username %>
+
+    </span>
+
+    <a
+      href="/logout"
+      class="text-dark text-decoration-none fw-semibold"
+    >
+      Logout
+    </a>
+
+  <% } %>
+  <button id="theme-toggle">
+
+   <i class="fa-solid fa-moon"></i>
+
+</button>
+
+  
+<a
+href="/listings/wishlist"
+class="nav-link"
+>
+
+<i class="fa-solid fa-heart"></i>
+
+Wishlist
+
+</a>
+
+  <div class="profile-menu">
+
+   <button class="menu-btn">
+
+      <i class="fa-solid fa-bars"></i>
+
+      <i class="fa-solid fa-user"></i>
+
+   </button>
+
+   <div class="dropdown-menu-custom">
+
+      <a href="/listings/wishlist">
+         Wishlist
+      </a>
+
+      <a href="/listings">
+         My Listings
+      </a>
+
+      <a href="/profile">
+         Profile
+      </a>
+
+      <a href="/logout">
+         Logout
+      </a>
+
+   </div>
+
+</div>
+
+</div>
+
+  </div>
+</nav>
+
+
+<!-- Search Bar -->
+
+<div class="search-wrapper">
+
+<form
+action="/listings/search"
+method="GET"
+class="search-box"
+>
+
+    <div class="search-item">
+
+        <p>Where</p>
+
+        <input
+        type="text"
+        name="q"
+        placeholder="Search destinations"
+        class="search-input"
+        />
+
+    </div>
+
+    <div class="vr"></div>
+
+    <div class="search-item">
+
+        <p>When</p>
+
+<input
+type="text"
+id="date-picker"
+placeholder="Add dates"
+class="search-input"
+/>
+
+    </div>
+
+  <div class="vr"></div>
+
+<div class="search-item guest-dropdown-wrapper">
+
+   <p>Who</p>
+
+   <span id="guest-summary">
+      1 Guest
+   </span>
+
+   <div class="guest-dropdown">
+
+      <!-- ADULTS -->
+
+      <div class="guest-row">
+
+         <div>
+
+            <h6>Adults</h6>
+
+            <small>Ages 13+</small>
+
+         </div>
+
+         <div class="guest-controls">
+
+            <button
+            type="button"
+            class="guest-minus"
+            data-type="adults"
+            >
+            -
+            </button>
+
+            <span id="adults-count">
+               1
+            </span>
+
+            <button
+            type="button"
+            class="guest-plus"
+            data-type="adults"
+            >
+            +
+            </button>
+
+         </div>
+
+      </div>
+
+      <!-- CHILDREN -->
+
+      <div class="guest-row">
+
+         <div>
+
+            <h6>Children</h6>
+
+            <small>Ages 2-12</small>
+
+         </div>
+
+         <div class="guest-controls">
+
+            <button
+            type="button"
+            class="guest-minus"
+            data-type="children"
+            >
+            -
+            </button>
+
+            <span id="children-count">
+               0
+            </span>
+
+            <button
+            type="button"
+            class="guest-plus"
+            data-type="children"
+            >
+            +
+            </button>
+
+         </div>
+
+      </div>
+
+   </div>
+
+</div>
+
+    <button class="search-btn">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+    </button>
+
+</form>
+
+</div>
+
+<!-- categories -->
+<div class="categories">
+  <a href="/listings/category/Homes" class="category <%= selectedCategory==='Homes' ? 'active-cat' : '' %>">
+    <i class="fa-solid fa-house"></i>
+    <span>Homes</span>
+  </a>
+  <a href="/listings/category/Mountains" class="category <%= selectedCategory==='Mountains' ? 'active-cat' : '' %>">
+    <i class="fa-solid fa-mountain"></i>
+    <span>Mountains</span>
+  </a>
+  <a href="/listings/category/Beach" class="category <%= selectedCategory==='Beach' ? 'active-cat' : '' %>">
+    <i class="fa-solid fa-water"></i>
+    <span>Beach</span>
+  </a>
+  <a href="/listings/category/Arctic" class="category <%= selectedCategory==='Arctic' ? 'active-cat' : '' %>">
+    <i class="fa-solid fa-snowflake"></i>
+    <span>Arctic</span>
+  </a>
+  <a href="/listings/category/Forest" class="category <%= selectedCategory==='Forest' ? 'active-cat' : '' %>">
+    <i class="fa-solid fa-tree"></i>
+    <span>Forest</span>
+  </a>
+
+</div>

@@ -1,0 +1,125 @@
+<% layout("layouts/boilerplate") %>
+
+<% function renderSection(
+   title,
+   listings,
+   category
+){ %>
+
+<div class="category-section">
+
+   <div class="section-header">
+
+   <h2><%= title %></h2>
+
+   <a
+   href="/listings/category/<%= category %>"
+   class="see-all-btn"
+   >
+
+      <i class="fa-solid fa-arrow-right"></i>
+
+   </a>
+
+</div>
+
+   <div class="listing-slider">
+
+      <% listings.forEach(listing=>{ %>
+
+         <a
+         href="/listings/<%= listing._id %>"
+         class="listing-card-link"
+         >
+
+         <div class="listing-card">
+            <form
+action="/listings/<%= listing._id %>/wishlist"
+method="POST"
+class="wishlist-form"
+>
+
+<button class="wishlist-btn">
+
+<%
+
+const isWishlisted =
+currUser &&
+currUser.wishlist &&
+currUser.wishlist.includes(
+listing._id
+);
+
+%>
+
+<i class="
+fa-heart
+fa-solid
+<%= isWishlisted
+? 'wishlisted'
+: ''
+%>
+"></i>
+
+</button>
+
+</form>
+
+            <img
+            src="<%= listing.image.url %>"
+            class="listing-img"
+            />
+
+            <div class="listing-info">
+
+               <h5>
+                  <%= listing.title %>
+               </h5>
+
+               <p>
+                  ₹ <%= listing.price %> / night
+               </p>
+
+            </div>
+
+         </div>
+
+         </a>
+
+      <% }) %>
+
+   </div>
+
+</div>
+
+<% } %>
+
+<%- renderSection(
+   "Popular Homes",
+   homes,
+   "Homes"
+) %>
+
+<%- renderSection(
+   "Mountain Escapes",
+   mountains,
+   "Mountains"
+) %>
+
+<%- renderSection(
+   "Beach Stays",
+   beach,
+   "Beach"
+) %>
+
+<%- renderSection(
+   "Forest Retreats",
+   forest,
+   "Forest"
+) %>
+
+<%- renderSection(
+   "Arctic Adventures",
+   arctic,
+   "Arctic"
+) %>
